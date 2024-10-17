@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Function that encodes input to base64
-const base64Encode = async (req, res) => {
+const encodeToBase64 = async (req, res) => {
   try {
     const { input } = req.body;
 
@@ -32,7 +32,7 @@ const base64Encode = async (req, res) => {
 // Documentation endpoint
 const getDocs = (req, res) => {
   res.json({
-    name: 'base64Encode',
+    name: 'encodeToBase64',
     description: 'Encode a string to base64 format.',
     input: {
       type: 'string',
@@ -69,13 +69,13 @@ const getDocs = (req, res) => {
 // Root route (for convenience)
 app.get('/', (req, res) => {
   res.send(
-    'Welcome to the Base64 Encoder API. Use /functions/base64Encode for encoding.'
+    'Welcome to the Base64 Encoder API. Use /functions/encodeToBase64 for encoding.'
   );
 });
 
 // Routes
-app.post('/functions/base64Encode', base64Encode);
-app.get('/functions/base64Encode', getDocs);
+app.post('/functions/encodeToBase64', encodeToBase64);
+app.get('/functions/encodeToBase64', getDocs);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
